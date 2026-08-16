@@ -4,7 +4,7 @@
     "shortName": "r/-kappa",
     "description": "Bot de Discord que reacciona automáticamente a mensajes de usuarios específicos con emojis configurables.",
     "logo": "assets/images/logo.png",
-    "favicon": "assets/images/favicon.png"
+    "favicon": "assets/images/logo.png"
   },
 
   "nav": {
