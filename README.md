@@ -1,5 +1,13 @@
 # DiscordBotReacciones
 
+Este proyecto incluye instrucciones para crear y configurar tu propio bot de Discord, 
+o bien usar el bot ya creado directamente. 
+
+[Haz clic aquí para invitar el bot a tu servidor](https://discord-reaction-bot.github.io/discord-reaction-bot/#inicio)
+
+**Eres libre de usar este repositorio como plantilla.** Si prefieres tu propio bot local, 
+puedes seguir las instrucciones más abajo para crear uno con la misma funcionalidad.
+
 Proyecto compuesto por dos partes:
 
 1. **El bot de Discord** (`bot/`) — reacciona automáticamente a los mensajes de usuarios específicos, con emoji configurable por usuario, probabilidad de reacción, soporte multi-servidor y persistencia en JSON.
