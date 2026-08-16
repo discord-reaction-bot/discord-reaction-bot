@@ -214,7 +214,7 @@ Lee los PID guardados en `dat/watchdog.pid` y `dat/bot.pid`, cierra ambos proces
 | Doble clic en `iniciar_bot.bat` | Arranca el watchdog, que a su vez arranca el bot en segundo plano (sin ventanas). |
 | El bot se cae solo (tras +60s activo) | El watchdog lo reinicia automáticamente. |
 | El bot falla al arrancar (antes de 60s) | El watchdog se detiene, no reintenta en bucle. |
-| Doble clic en `detener_bot.bat` | Apaga watchdog + bot de forma limpia y ordenada. |
+| Doble clic en `detener_bot.bat` o Click derecho y "Ejecutar con PowerShell" | Apaga watchdog + bot de forma limpia y ordenada. |
 | Apagar/reiniciar/suspender el PC | El bot y el watchdog se detienen; hay que volver a ejecutar `iniciar_bot.bat` al encender el PC. |
 
 ---
