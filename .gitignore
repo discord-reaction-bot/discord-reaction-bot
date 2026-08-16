@@ -1,13 +1,15 @@
-# Bot - secretos y archivos locales
+# Entorno y secretos del bot
 bot/.env
 bot/venv/
+
+# Archivos temporales de Python
 bot/__pycache__/
 bot/**/*.pyc
-bot/dat/
 
-# Configuración y datos privados
-bot/config.json
+# Datos y configuración privada
+bot/dat/config.json
+bot/dat/watcdog.json
 
-# Logs y archivos temporales
+# Logs y PID
 bot/*.log
 bot/*.pid
