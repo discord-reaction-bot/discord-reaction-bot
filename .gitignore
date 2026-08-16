@@ -33,6 +33,8 @@ bot/dat/watchdog.log
 bot/dat/*.log
 bot/data/bot.pid
 bot/data/watchdog.pid
+bot/dat/*.pid
+
 # Optional: if you later generate local DB or temporary files
 *.sqlite3
 *.db
