@@ -2,7 +2,7 @@
 
 Proyecto compuesto por dos partes:
 
-1. **El bot de Discord** (`bot/DiscordBotReacciones/`) — reacciona automáticamente a los mensajes de usuarios específicos, con emoji configurable por usuario, probabilidad de reacción, soporte multi-servidor y persistencia en JSON.
+1. **El bot de Discord** (`bot/`) — reacciona automáticamente a los mensajes de usuarios específicos, con emoji configurable por usuario, probabilidad de reacción, soporte multi-servidor y persistencia en JSON.
 2. **La página web** (`docs/`) — presenta el bot, explica sus comandos y funciones, y además sirve como plantilla estática reutilizable para otros proyectos similares.
 
 ---
@@ -13,21 +13,22 @@ Proyecto compuesto por dos partes:
 1. [Crear la aplicación y el bot en Discord](#1-crear-la-aplicación-y-el-bot-en-discord)
 2. [Configurar el token de forma segura (.env)](#2-configurar-el-token-de-forma-segura-env)
 3. [Estructura del bot](#3-estructura-del-bot)
-4. [Instalación y primer arranque](#4-instalación-y-primer-arranque)
-5. [Invitar el bot a un servidor](#5-invitar-el-bot-a-un-servidor)
-6. [Encender y apagar el bot](#6-encender-y-apagar-el-bot)
-7. [Comandos disponibles](#7-comandos-disponibles)
-8. [Ejecución local: qué significa y cómo funciona](#8-ejecución-local-qué-significa-y-cómo-funciona)
-9. [Notas de seguridad](#9-notas-de-seguridad)
+4. [Archivos de ejemplo (.example)](#4-archivos-de-ejemplo-example)
+5. [Instalación y primer arranque](#5-instalación-y-primer-arranque)
+6. [Invitar el bot a un servidor](#6-invitar-el-bot-a-un-servidor)
+7. [Encender y apagar el bot](#7-encender-y-apagar-el-bot)
+8. [Comandos disponibles](#8-comandos-disponibles)
+9. [Ejecución local: qué significa y cómo funciona](#9-ejecución-local-qué-significa-y-cómo-funciona)
+10. [Notas de seguridad](#10-notas-de-seguridad)
 
 **Parte 2 — La página web**
-10. [Qué es esta web](#10-qué-es-esta-web)
-11. [Estructura de la web](#11-estructura-de-la-web)
-12. [Cómo funciona la página](#12-cómo-funciona-la-página)
-13. [Cómo editar el contenido](#13-cómo-editar-el-contenido)
-14. [Cómo editar la apariencia](#14-cómo-editar-la-apariencia)
-15. [Cómo ver la página localmente](#15-cómo-ver-la-página-localmente)
-16. [Usar la web como plantilla en otro proyecto](#16-usar-la-web-como-plantilla-en-otro-proyecto)
+11. [Qué es esta web](#11-qué-es-esta-web)
+12. [Estructura de la web](#12-estructura-de-la-web)
+13. [Cómo funciona la página](#13-cómo-funciona-la-página)
+14. [Cómo editar el contenido](#14-cómo-editar-el-contenido)
+15. [Cómo editar la apariencia](#15-cómo-editar-la-apariencia)
+16. [Cómo ver la página localmente](#16-cómo-ver-la-página-localmente)
+17. [Usar la web como plantilla en otro proyecto](#17-usar-la-web-como-plantilla-en-otro-proyecto)
 
 ---
 
@@ -47,7 +48,7 @@ Proyecto compuesto por dos partes:
    - En **Bot Permissions**, marca como mínimo: `View Channels`, `Send Messages`, `Read Message History`, `Add Reactions`.
    - Copia la URL generada al final.
 
-Guarda esa URL, la necesitarás en la sección 5 para invitar el bot a un servidor.
+Guarda esa URL, la necesitarás en la sección 6 para invitar el bot a un servidor.
 
 ---
 
@@ -55,7 +56,7 @@ Guarda esa URL, la necesitarás en la sección 5 para invitar el bot a un servid
 
 El proyecto usa un archivo `.env` para guardar el token sin exponerlo en el código ni en GitHub.
 
-1. Dentro de `bot/DiscordBotReacciones/`, copia el archivo de ejemplo:
+1. Dentro de `bot/`, copia el archivo de ejemplo:
    ```
    copy .env.example .env
    ```
@@ -72,7 +73,7 @@ El proyecto usa un archivo `.env` para guardar el token sin exponerlo en el cód
 ## 3. Estructura del bot
 
 ```
-bot/DiscordBotReacciones/
+bot/
 │
 ├── bot.py                  → Punto de entrada. Conecta con Discord, registra los comandos slash y escucha mensajes.
 ├── config_manager.py       → Funciones para leer/escribir config.json (usuarios vigilados, emojis, pausa).
@@ -101,14 +102,36 @@ El `.gitignore` del proyecto vive en la **raíz del repositorio** (no dentro de 
 
 ---
 
-## 4. Instalación y primer arranque
+## 4. Archivos de ejemplo (`.example`)
+
+Este repositorio no incluye datos reales ni secretos — en su lugar, incluye plantillas con el sufijo `.example` que debes copiar y completar tú mismo antes de arrancar el bot.
+
+| Plantilla | Copiar a | Qué contiene |
+|---|---|---|
+| `bot/.env.example` | `bot/.env` | Variable `DISCORD_TOKEN` vacía, a rellenar con tu propio token. |
+| `bot/config.example.json` | *(no hace falta copiarlo)* | Muestra la estructura que usa `config.json`, solo como referencia — el archivo real lo genera el bot automáticamente. |
+
+### Cómo usarlos
+
+1. Copia el `.env.example` a `.env` dentro de la misma carpeta:
+   ```
+   copy bot\.env.example bot\.env
+   ```
+2. Abre `bot/.env` y sustituye el valor de ejemplo por tu token real (ver sección 2).
+3. No necesitas copiar `config.example.json` manualmente — es solo referencia de lectura. El archivo real `config.json` se genera automáticamente dentro de `bot/dat/` la primera vez que ejecutas el bot.
+4. Ninguno de los dos archivos reales (`bot/.env`, `bot/dat/config.json`) se sube nunca a GitHub, gracias al `.gitignore` — si clonas este repo, siempre partirás de las plantillas `.example`, nunca de datos de otra persona.
+
+---
+
+## 5. Instalación y primer arranque
 
 **Requisitos:** Windows, Python 3.10+ instalado (con "Add python.exe to PATH" marcado durante la instalación).
 
 1. Clona o descarga el proyecto y entra a la carpeta del bot:
    ```
-   cd bot/DiscordBotReacciones
+   cd bot
    ```
+   (Toda la lógica del bot vive directamente en esta carpeta, sin subcarpetas adicionales.)
 2. Crea el entorno virtual:
    ```
    python -m venv venv
@@ -127,11 +150,11 @@ El `.gitignore` del proyecto vive en la **raíz del repositorio** (no dentro de 
    python bot.py
    ```
    En la consola deberías ver `✅ Bot conectado como TuBot#XXXX` y `✅ X comandos slash sincronizados.`
-7. Detén la prueba con `Ctrl+C`. A partir de ahora puedes usar `iniciar_bot.bat` y `detener_bot.bat` para encenderlo/apagarlo con doble clic (ver sección 6).
+7. Detén la prueba con `Ctrl+C`. A partir de ahora puedes usar `iniciar_bot.bat` y `detener_bot.bat` para encenderlo/apagarlo con doble clic (ver sección 7).
 
 ---
 
-## 5. Invitar el bot a un servidor
+## 6. Invitar el bot a un servidor
 
 1. Abre la URL de invitación que generaste en la sección 1 (formato `https://discord.com/oauth2/authorize?client_id=...`).
 2. Selecciona el servidor donde quieres añadirlo en el desplegable.
@@ -143,7 +166,7 @@ La configuración (usuarios vigilados, emojis, pausa) es **independiente por ser
 
 ---
 
-## 6. Encender y apagar el bot
+## 7. Encender y apagar el bot
 
 - **Encender:** doble clic en `iniciar_bot.bat`. No se abre ninguna ventana visible; el bot queda corriendo en segundo plano vigilado por el watchdog.
 - **Apagar:** doble clic en `detener_bot.bat`. Cierra tanto el bot como el watchdog de forma limpia.
@@ -152,7 +175,7 @@ La configuración (usuarios vigilados, emojis, pausa) es **independiente por ser
 
 ---
 
-## 7. Comandos disponibles
+## 8. Comandos disponibles
 
 Todos los comandos de configuración requieren permisos de **administrador** en el servidor, excepto `/rinfo`.
 
@@ -178,7 +201,7 @@ Todos los comandos de configuración requieren permisos de **administrador** en 
 
 ---
 
-## 8. Ejecución local: qué significa y cómo funciona
+## 9. Ejecución local: qué significa y cómo funciona
 
 **Este bot corre en tu propio PC, no en la nube.** Es importante entenderlo antes de usarlo a diario:
 
@@ -214,12 +237,12 @@ Lee los PID guardados en `dat/watchdog.pid` y `dat/bot.pid`, cierra ambos proces
 | Doble clic en `iniciar_bot.bat` | Arranca el watchdog, que a su vez arranca el bot en segundo plano (sin ventanas). |
 | El bot se cae solo (tras +60s activo) | El watchdog lo reinicia automáticamente. |
 | El bot falla al arrancar (antes de 60s) | El watchdog se detiene, no reintenta en bucle. |
-| Doble clic en `detener_bot.bat` o Click derecho y "Ejecutar con PowerShell" | Apaga watchdog + bot de forma limpia y ordenada. |
+| Doble clic en `detener_bot.bat` | Apaga watchdog + bot de forma limpia y ordenada. |
 | Apagar/reiniciar/suspender el PC | El bot y el watchdog se detienen; hay que volver a ejecutar `iniciar_bot.bat` al encender el PC. |
 
 ---
 
-## 9. Notas de seguridad
+## 10. Notas de seguridad
 
 - Nunca compartas tu `.env` ni el contenido de tu token.
 - El link de invitación (`client_id` + scopes) **sí es seguro de compartir** — no expone el token.
@@ -229,7 +252,7 @@ Lee los PID guardados en `dat/watchdog.pid` y `dat/bot.pid`, cierra ambos proces
 
 # Parte 2 — La página web
 
-## 10. Qué es esta web
+## 11. Qué es esta web
 
 La carpeta `docs/` contiene la página web del proyecto, y a la vez funciona como una **plantilla editable** para reutilizar el mismo diseño en otros proyectos.
 
@@ -247,7 +270,7 @@ No depende de frameworks ni de un backend. Es una web estática, rápida de abri
 
 ---
 
-## 11. Estructura de la web
+## 12. Estructura de la web
 
 ```
 docs/
@@ -266,7 +289,7 @@ docs/
 
 ---
 
-## 12. Cómo funciona la página
+## 13. Cómo funciona la página
 
 ### HTML base
 
@@ -286,7 +309,7 @@ En `assets/images/` y `assets/fonts/` se guardan los recursos visuales: logo, ma
 
 ---
 
-## 13. Cómo editar el contenido
+## 14. Cómo editar el contenido
 
 ### Editar textos generales
 
@@ -329,7 +352,7 @@ Abre `docs/data/commands.json`. Cada objeto representa un comando del bot.
 }
 ```
 
-Si cambias el bot, solo actualiza esta lista para que la web refleje el estado real (revisa la sección 7 de este documento para la lista actual de comandos).
+Si cambias el bot, solo actualiza esta lista para que la web refleje el estado real (revisa la sección 8 de este documento para la lista actual de comandos).
 
 ### Editar política legal
 
@@ -337,7 +360,7 @@ Abre `docs/data/legal.json`. Ahí se define la política de privacidad, los tér
 
 ---
 
-## 14. Cómo editar la apariencia
+## 15. Cómo editar la apariencia
 
 ### Cambiar colores y estilo
 
@@ -373,7 +396,7 @@ En `assets/images/` puedes reemplazar logo, favicon, mascota, íconos de funcion
 
 ---
 
-## 15. Cómo ver la página localmente
+## 16. Cómo ver la página localmente
 
 La forma más simple es abrir `index.html` directamente en el navegador.
 
@@ -391,7 +414,7 @@ http://localhost:8000/
 
 ---
 
-## 16. Usar la web como plantilla en otro proyecto
+## 17. Usar la web como plantilla en otro proyecto
 
 Esta página está pensada como plantilla editable: no usa un framework pesado, el contenido vive en JSON, los estilos están centralizados en CSS, los recursos visuales están separados en `assets/`, y la estructura principal es estable y reutilizable. Para adaptar la web a otro proyecto casi no hace falta tocar HTML.
 

@@ -1,0 +1,2 @@
+//Configuración persistente. Se crea sola al arrancar el bot por primera vez.//
+//no hace falta crear el archivo config.json//

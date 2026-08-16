@@ -1,15 +1,47 @@
-# Entorno y secretos del bot
-bot/.env
-bot/venv/
+# ===========================
+# Secrets / environment
+# ===========================
+.env
+**/.env
+.env.*
+!.env.example
+!.env.sample
 
-# Archivos temporales de Python
-bot/__pycache__/
-bot/**/*.pyc
+# Virtual environments
+venv/
+.env/
+.venv/
+ENV/
+env/
+**/venv/
+**/.venv/
 
-# Datos y configuración privada
+# ===========================
+# Python cache / bytecode
+# ===========================
+__pycache__/
+**/__pycache__/
+*.py[cod]
+*$py.class
+**/*.pyc
+
+# ===========================
+# Local bot data
+# ===========================
 bot/dat/config.json
-bot/dat/watcdog.json
+bot/dat/watchdog.log
+bot/dat/*.log
 
-# Logs y PID
-bot/*.log
-bot/*.pid
+# Optional: if you later generate local DB or temporary files
+*.sqlite3
+*.db
+*.tmp
+*.bak
+
+# ===========================
+# OS / editor files
+# ===========================
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
