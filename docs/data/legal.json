@@ -1,0 +1,71 @@
+{
+  "privacidad": {
+    "title": "Política de privacidad",
+    "intro": "Este bot es un proyecto personal. Este texto es provisional y explica, en términos simples, qué información utiliza el bot y dónde queda guardada, basándose únicamente en su funcionamiento real.",
+    "sections": [
+      {
+        "heading": "Qué guarda el bot",
+        "body": "El bot guarda, en un archivo config.json dentro de la computadora donde corre, los IDs de los usuarios que el administrador del servidor elige vigilar, el emoji o los emojis asignados a cada uno, la probabilidad de reacción configurada y el estado de pausa de cada servidor."
+      },
+      {
+        "heading": "Dónde se almacena esa información",
+        "body": "El bot corre de forma local, en la computadora de quien lo administra, no en un servidor externo ni en la nube. Toda la configuración persiste únicamente en el archivo config.json de esa instalación, y solo existe mientras esa persona lo mantenga."
+      },
+      {
+        "heading": "Confidencialidad de la configuración",
+        "body": "El propietario y administrador del proyecto se compromete a mantener privado el archivo config.json y a no compartirlo con terceros. Este archivo puede contener identificadores de usuarios y servidores de Discord, así como las configuraciones asociadas a ellos. Por este motivo, config.json no forma parte de los archivos publicados del proyecto ni debe incluirse en repositorios públicos."
+      },
+      {
+        "heading": "Qué no hace el bot",
+        "body": "El bot no utiliza cookies, no incorpora servicios de analítica o rastreo, El bot no envía a servicios externos información adicional con fines de analítica, rastreo o almacenamiento, más allá de las comunicaciones necesarias con Discord para funcionar, y no guarda el contenido de los mensajes que lee para identificar a los usuarios vigilados."
+      },
+      {
+        "heading": "Message Content Intent",
+        "body": "Para poder identificar quién escribe cada mensaje, el bot necesita tener activado el permiso de Discord llamado \"Message Content Intent\". Ese permiso se usa únicamente para reconocer al autor del mensaje en el momento; el bot no conserva ese contenido después."
+      },
+      {
+        "heading": "Emojis personalizados del servidor",
+        "body": "Cuando se configura un emoji personalizado como reacción, el bot valida que ese emoji pertenezca al servidor donde se ejecuta el comando, por lo que solo utiliza recursos visuales propios de cada servidor."
+      },
+      {
+        "heading": "Permisos que solicita al invitarlo",
+        "body": "Al invitar al bot se solicitan los permisos necesarios para su funcionamiento: ver canales, enviar mensajes, leer el historial de mensajes y añadir reacciones. No se solicitan permisos adicionales a los que requiere para operar."
+      },
+      {
+        "heading": "Token y credenciales del bot",
+        "body": "El token del bot se guarda en un archivo .env local, separado del código, y no se sube a ningún repositorio público. Si el administrador del bot sospecha que su token se filtró, puede invalidarlo y generar uno nuevo desde el portal de desarrolladores de Discord."
+      },
+      {
+        "heading": "Consultas",
+        "body": "Si tenés dudas sobre el funcionamiento del bot, podés revisar el repositorio de GitHub enlazado en esta página o abrir un issue allí."
+      }
+    ]
+  },
+
+  "terminos": {
+    "title": "Términos y condiciones",
+    "intro": "Este texto es provisional y describe, en términos simples, la naturaleza del proyecto y su funcionamiento real.",
+    "sections": [
+      {
+        "heading": "Naturaleza del proyecto",
+        "body": "Discord Reaction Bot es un proyecto personal cuyo código puede consultarse en el repositorio de GitHub enlazado en esta página."
+      },
+      {
+        "heading": "Disponibilidad del bot",
+        "body": "El bot solo está en línea mientras el proceso esté corriendo en la computadora de quien lo administra. Si esa computadora se apaga, se reinicia o se suspende, el bot se desconecta y no vuelve a estar disponible hasta que se lo encienda de nuevo. No hay garantía de disponibilidad continua."
+      },
+      {
+        "heading": "Uso previsto",
+        "body": "El bot está pensado para reaccionar automáticamente, con un emoji configurado, a los mensajes de los usuarios que el administrador del servidor elija vigilar, dentro de los servidores donde fue invitado con los permisos correspondientes."
+      },
+      {
+        "heading": "Responsabilidad del administrador del servidor",
+        "body": "Las acciones de configuración del bot (elegir usuarios vigilados, emojis, probabilidad de reacción, pausar el bot) requieren permisos de administrador en el servidor. Quien tenga esos permisos es responsable de cómo se configura el bot en ese servidor."
+      },
+      {
+        "heading": "Cambios en el bot o en esta página",
+        "body": "Tanto el bot como el contenido de este sitio pueden actualizarse con el tiempo. Los cambios relevantes se reflejarán en esta página."
+      }
+    ]
+  }
+}

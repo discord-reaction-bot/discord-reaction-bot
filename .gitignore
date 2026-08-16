@@ -1,0 +1,13 @@
+# Bot - secretos y archivos locales
+bot/.env
+bot/venv/
+bot/__pycache__/
+bot/**/*.pyc
+bot/dat/
+
+# Configuración y datos privados
+bot/config.json
+
+# Logs y archivos temporales
+bot/*.log
+bot/*.pid

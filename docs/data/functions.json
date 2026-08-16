@@ -1,0 +1,59 @@
+{
+  "functions": [
+    {
+      "icon": "assets/images/test.png",
+      "title": "Reacciona a usuarios específicos",
+      "description": "Elegís exactamente a quién vigila el bot en cada servidor; nadie más recibe reacciones automáticas."
+    },
+    {
+      "icon": "assets/images/test.png",
+      "title": "Emoji personalizado por usuario",
+      "description": "Usá emojis normales de Discord o emojis personalizados del servidor — el bot valida que le pertenezcan."
+    },
+    {
+      "icon": "assets/images/test.png",
+      "title": "Varios emojis, selección al azar",
+      "description": "Asigná hasta 5 emojis a un mismo usuario y el bot elige uno al azar cada vez que reacciona."
+    },
+    {
+      "icon": "assets/images/test.png",
+      "title": "Probabilidad de reacción ajustable",
+      "description": "Definí un porcentaje de 1% a 100% para controlar qué tan seguido reacciona a cada persona."
+    },
+    {
+      "icon": "assets/images/test.png",
+      "title": "Multi-servidor, configuración independiente",
+      "description": "El mismo bot puede estar en varios servidores a la vez, cada uno con su propia lista de usuarios y emojis."
+    },
+    {
+      "icon": "assets/images/test.png",
+      "title": "Persistencia en JSON",
+      "description": "Toda la configuración se guarda en config.json y sobrevive a reinicios del bot o de la PC."
+    },
+    {
+      "icon": "assets/images/test.png",
+      "title": "Pausa y reanudación con un comando",
+      "description": "Cortá o reactivá las reacciones automáticas al instante, sin apagar el bot."
+    },
+    {
+      "icon": "assets/images/test.png",
+      "title": "Asignación masiva de usuarios",
+      "description": "Asigná el mismo emoji a varios usuarios de una sola vez en lugar de configurarlos uno por uno."
+    },
+    {
+      "icon": "assets/images/test.png",
+      "title": "Respuestas automáticas fuera de contexto",
+      "description": "Si alguien le escribe por mensaje directo o solo lo menciona, el bot responde explicando cómo usarlo."
+    },
+    {
+      "icon": "assets/images/test.png",
+      "title": "Auto-recuperación con watchdog",
+      "description": "Si el bot se cae después de estar activo, se reinicia solo; si falla al arrancar, no reintenta en bucle."
+    },
+    {
+      "icon": "assets/images/test.png",
+      "title": "Límite de usuarios configurable",
+      "description": "El máximo de usuarios vigilados se ajusta con una constante en el código, 20 por defecto."
+    }
+  ]
+}

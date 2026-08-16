@@ -1,0 +1,94 @@
+{
+  "site": {
+    "title": "Discord Reaction Bot",
+    "shortName": "r/-kappa",
+    "description": "Bot de Discord que reacciona automáticamente a mensajes de usuarios específicos con emojis configurables.",
+    "logo": "assets/images/logo.png",
+    "favicon": "assets/images/favicon.png"
+  },
+
+  "nav": {
+    "logoLabel": "r/-kappa",
+    "logoImage": "assets/images/logo.png",
+    "links": [
+      { "label": "Inicio",    "type": "anchor",   "href": "#inicio" },
+      { "label": "Funciones", "type": "anchor",   "href": "#funciones" },
+      { "label": "Comandos",  "type": "anchor",   "href": "#comandos" },
+      { "label": "GitHub",    "type": "external", "href": "https://github.com/TU_USUARIO/DiscordBotReacciones", "variant": "secondary" }
+    ],
+    "cta": {
+      "label": "Invitar",
+      "href": "https://discord.com/oauth2/authorize?client_id=1536438543226896504&permissions=2147830848&integration_type=0&scope=bot+applications.commands"
+    }
+  },
+
+  "hero": {
+    "eyebrow": "Bot de reacciones para Discord",
+    "title": "Discord Reaction Bot",
+    "subtitle": "Reacciona por vos, en automático.",
+    "description": "Elegís a quién vigilar y con qué emoji reacciona. Cada servidor tiene su propia configuración, así que podés usar el mismo bot en varios sitios a la vez.",
+    "primaryButton": {
+      "label": "Invitar al bot",
+      "href": "https://discord.com/oauth2/authorize?client_id=1536438543226896504&permissions=2147830848&integration_type=0&scope=bot+applications.commands"
+    },
+    "secondaryButton": {
+      "label": "Ver en GitHub",
+      "href": "https://github.com/TU_USUARIO/DiscordBotReacciones"
+    },
+    "mascotImage": "assets/images/kappa-mascot.png",
+    "mascotAlt": "Mascota del bot, basada en el emote Kappa",
+    "reactionIcons": [
+      "assets/images/who_is_this.png",
+      "assets/images/cato.png",
+      "assets/images/monk.webp"
+    ]
+  },
+
+  "about": {
+    "eyebrow": "Qué es",
+    "title": "¿Qué hace el bot?",
+    "lead": "Discord Reaction Bot vigila a las personas que elijas dentro de tus servidores y reacciona automáticamente a sus mensajes con el emoji que configures. Vos decidís a quién vigilar, qué emoji usar y con qué probabilidad reacciona cada vez.",
+    "highlights": [
+      { "icon": "assets/images/test.png", "text": "Reacciona solo a los usuarios que elijas" },
+      { "icon": "assets/images/test.png", "text": "Probabilidad de reacción configurable por usuario" },
+      { "icon": "assets/images/test.png", "text": "Configuración independiente en cada servidor" },
+      { "icon": "assets/images/test.png", "text": "Guarda todo en un archivo JSON local" }
+    ]
+  },
+
+  "sections": {
+    "funciones": {
+      "eyebrow": "Qué puede hacer",
+      "title": "Funciones"
+    },
+    "comandos": {
+      "eyebrow": "Cómo se controla",
+      "title": "Comandos"
+    },
+    "cta": {
+      "title": "¿LISTO PARA USARLO?",
+      "primaryButton": {
+        "label": "Invitar al bot",
+        "href": "https://discord.com/oauth2/authorize?client_id=TU_CLIENT_ID&scope=bot%20applications.commands&permissions=274878221376"
+      },
+      "secondaryButton": {
+        "label": "Ver en GitHub",
+        "href": "https://github.com/TU_USUARIO/DiscordBotReacciones"
+      }
+    }
+  },
+
+  "footer": {
+    "brand": "Discord Reaction Bot",
+    "tagline": "Un bot personal, simple y directo, para reaccionar por ti.",
+    "links": [
+      { "label": "GitHub",                    "href": "https://github.com/TU_USUARIO/DiscordBotReacciones", "external": true },
+      { "label": "Redes",                     "href": "https://linktr.ee/TU_USUARIO",                        "external": true },
+      { "label": "Política de privacidad",    "href": "#privacidad" },
+      { "label": "Términos y condiciones",    "href": "#terminos" }
+    ],
+    "languages": [
+      { "code": "es", "label": "🇪🇸 Español" }
+    ]
+  }
+}

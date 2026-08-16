@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Discord Reaction Bot</title>
+  <meta name="description" content="Bot de Discord que reacciona automáticamente a mensajes de usuarios específicos con emojis configurables." />
+  <link rel="icon" href="assets/images/favicon.png" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Fondo animado con burbujas/luces difusas -->
+  <div class="bg-blobs" aria-hidden="true">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <!-- ============== NAVBAR ============== -->
+  <header class="navbar" id="navbar">
+    <div class="container">
+      <a href="#inicio" class="nav-logo" id="nav-logo">
+        <span class="nav-logo-mark">
+          <img id="nav-logo-img" alt="" />
+          <span class="logo-fallback" id="logo-fallback">🤖</span>
+        </span>
+        <span id="nav-logo-text">r/-kappa</span>
+      </a>
+
+      <nav class="nav-links" id="nav-links" aria-label="Navegación principal">
+        <!-- Los enlaces se generan desde data/site.json (nav.links) -->
+        <ul id="nav-links-list" style="display:contents;"></ul>
+        <a href="#" id="nav-cta" class="btn btn-primary btn-nav">Invitar</a>
+      </nav>
+
+      <div class="nav-backdrop" id="nav-backdrop" aria-hidden="true"></div>
+
+      <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav-links">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+
+    <div id="view-main">
+
+    <!-- ============== HERO ============== -->
+    <section class="hero" id="inicio">
+      <div class="container">
+        <div class="hero-copy reveal">
+          <p class="eyebrow" id="hero-eyebrow">Bot de reacciones para Discord</p>
+          <h1 id="hero-title">Discord Reaction Bot</h1>
+          <p class="hero-tagline" id="hero-tagline">Reacciona por vos, en automático.</p>
+          <p class="subtitle" id="hero-description">
+            Elegís a quién vigilar y con qué emoji reacciona. Cada servidor tiene su
+            propia configuración, así que podés usar el mismo bot en varios sitios a la vez.
+          </p>
+          <div class="hero-actions">
+            <a href="#" id="hero-btn-primary" class="btn btn-primary">Invitar al bot</a>
+            <a href="#" id="hero-btn-secondary" class="btn btn-secondary">Ver en GitHub</a>
+          </div>
+        </div>
+
+        <div class="hero-visual reveal">
+          <div class="mascot-frame">
+            <img
+              id="mascot-img"
+              src="assets/images/kappa-mascot.png"
+              alt="Mascota del bot, basada en el emote Kappa"
+              onerror="this.style.display='none'; document.getElementById('mascot-fallback').style.display='block';"
+            />
+            <p class="mascot-fallback" id="mascot-fallback" style="display:none;">
+              Coloca tu imagen en<br /><code>assets/images/kappa-mascot.png</code>
+            </p>
+          </div>
+          <span class="reaction-chip c1" aria-hidden="true"><img id="reaction-icon-1" src="assets/images/test.png" alt="" /></span>
+          <span class="reaction-chip c2" aria-hidden="true"><img id="reaction-icon-2" src="assets/images/test.png" alt="" /></span>
+          <span class="reaction-chip c3" aria-hidden="true"><img id="reaction-icon-3" src="assets/images/test.png" alt="" /></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============== QUÉ HACE EL BOT ============== -->
+    <section class="section about" id="que-hace">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="eyebrow" id="about-eyebrow">Qué es</p>
+          <h2 id="about-title">¿Qué hace el bot?</h2>
+        </div>
+
+        <p class="about-lead reveal" id="about-lead">
+          Discord Reaction Bot vigila a las personas que elijas dentro de tus servidores
+          y reacciona automáticamente a sus mensajes con el emoji que configures.
+        </p>
+
+        <ul class="about-highlights" id="about-highlights">
+          <!-- Se genera desde data/site.json (about.highlights) -->
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============== FUNCIONES ============== -->
+    <section class="section" id="funciones">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="eyebrow" id="funciones-eyebrow">Qué puede hacer</p>
+          <h2 id="funciones-title">Funciones</h2>
+        </div>
+
+        <div class="functions-grid" id="functions-grid">
+          <!-- Se genera desde data/functions.json -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ============== COMANDOS ============== -->
+    <section class="section" id="comandos">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="eyebrow" id="comandos-eyebrow">Cómo se controla</p>
+          <h2 id="comandos-title">Comandos</h2>
+        </div>
+
+        <div class="commands-panel reveal">
+          <ul class="commands-list" id="commands-list">
+            <!-- Se genera desde data/commands.json -->
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============== CTA FINAL ============== -->
+    <section class="cta-final">
+      <div class="container reveal">
+        <h2 id="cta-title">¿LISTO PARA USARLO?</h2>
+        <div class="cta-actions">
+          <a href="#" id="cta-btn-primary" class="btn btn-primary">Invitar al bot</a>
+          <a href="#" id="cta-btn-secondary" class="btn btn-secondary">Ver en GitHub</a>
+        </div>
+      </div>
+    </section>
+
+    </div>
+    <!-- /#view-main -->
+
+    <div id="view-legal" class="is-hidden">
+
+    <!-- ============== LEGAL: PRIVACIDAD ============== -->
+    <section class="legal-page" id="privacidad">
+      <div class="container legal-container">
+        <p class="eyebrow">Documento</p>
+        <h2 id="privacidad-title">Política de privacidad</h2>
+        <p class="legal-intro" id="privacidad-intro"></p>
+        <div class="legal-sections" id="privacidad-sections">
+          <!-- Se genera desde data/legal.json -->
+        </div>
+        <a href="#inicio" class="legal-back">← Volver al inicio</a>
+      </div>
+    </section>
+
+    <!-- ============== LEGAL: TÉRMINOS ============== -->
+    <section class="legal-page" id="terminos">
+      <div class="container legal-container">
+        <p class="eyebrow">Documento</p>
+        <h2 id="terminos-title">Términos y condiciones</h2>
+        <p class="legal-intro" id="terminos-intro"></p>
+        <div class="legal-sections" id="terminos-sections">
+          <!-- Se genera desde data/legal.json -->
+        </div>
+        <a href="#inicio" class="legal-back">← Volver al inicio</a>
+      </div>
+    </section>
+
+    </div>
+    <!-- /#view-legal -->
+
+  </main>
+
+  <!-- ============== FOOTER ============== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <h3 id="footer-brand">Discord Reaction Bot</h3>
+          <p id="footer-tagline">Un bot personal, simple y directo, para reaccionar por ti.</p>
+        </div>
+
+        <ul class="footer-links" id="footer-links"></ul>
+      </div>
+
+      <div class="footer-bottom">
+        <p class="footer-copy">&copy; <span id="footer-year"></span> Discord Reaction Bot - Hanky_rawr </p>
+
+        <div class="lang-select">
+          <button class="lang-current" id="lang-current" aria-haspopup="true" aria-expanded="false">🇪🇸 Español</button>
+          <div class="lang-menu" id="lang-menu"></div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

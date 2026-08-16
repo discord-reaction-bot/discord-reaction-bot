@@ -1,0 +1,1197 @@
+/* ============================================================
+   Discord Reaction Bot — style.css
+   Identidad visual: fondo, tipografía, movimiento, botones.
+   Misma estructura HTML/JS — solo apariencia.
+   ============================================================ */
+
+/* ---------- 1. Fuentes reemplazables -----------------------
+   Coloca tus archivos en docs/assets/fonts/ con estos nombres
+   exactos (o cambia el "src" de abajo) para que el diseño
+   cambie de tipografía sin tocar nada más.
+   Soporta .ttf y .otf. Si los archivos no existen todavía,
+   el navegador usa automáticamente el fallback del sistema. */
+
+@font-face {
+  font-family: "DisplayFont";
+  src: url("assets/fonts/display.ttf") format("truetype");
+  font-weight: 400 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "BodyFont";
+  src: url("assets/fonts/body.ttf") format("truetype");
+  font-weight: 300 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ---------- 2. Tokens de diseño ----------------------------- */
+
+:root {
+  /* Colores — definidos en el brief, no tocar sin motivo */
+  --bg-start: #008bff;
+  --bg-end: #004ed9;
+  --title-color: #ffffff;
+  --accent-start: #ff8700;
+  --accent-end: #ffc300;
+  --text-color: #101010;
+
+  /* Sombras — suaves y discretas, nunca duras */
+  --title-shadow: 0 3px 16px rgba(0, 0, 0, 0.22), 0 1px 2px rgba(0, 0, 0, 0.18);
+  --accent-shadow: 0 2px 10px rgba(255, 135, 0, 0.18);
+
+  /* Superficies */
+  --surface: rgba(255, 255, 255, 0.96);
+  --surface-soft: rgba(255, 255, 255, 0.07);
+  --surface-soft-hover: rgba(255, 255, 255, 0.14);
+  --border-soft: rgba(255, 255, 255, 0.16);
+  --border-soft-strong: rgba(255, 255, 255, 0.3);
+
+  /* Tipografía — "DisplayFont"/"BodyFont" son reemplazables,
+     el resto de la lista es el fallback si no hay archivo */
+  --font-display: "DisplayFont", "Segoe UI Semibold", "Segoe UI", system-ui, sans-serif;
+  --font-body: "BodyFont", "Segoe UI", system-ui, -apple-system, sans-serif;
+
+  /* Layout */
+  --max-width: 1180px;
+  --nav-height: 68px;
+  --radius-sm: 14px;
+  --radius: 22px;
+  --radius-lg: 32px;
+
+  /* Motion */
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-soft: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ---------- 3. Reset base ------------------------------------ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-weight: 400;
+  color: var(--text-color);
+  background: radial-gradient(120% 90% at 18% -10%, rgba(255, 255, 255, 0.16), transparent 55%),
+              linear-gradient(165deg, var(--bg-start) 0%, var(--bg-end) 100%);
+  background-attachment: fixed;
+  overflow-x: hidden;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  color: var(--title-color);
+  text-shadow: var(--title-shadow);
+  margin: 0;
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+}
+
+.eyebrow {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  background: linear-gradient(100deg, var(--accent-start), var(--accent-end));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: none;
+  filter: drop-shadow(var(--accent-shadow));
+  margin-bottom: 1rem;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+}
+
+/* ---------- 4. Fondo animado (burbujas/luces difusas) -------- */
+
+.bg-blobs {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.bg-blobs span {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  will-change: transform;
+}
+
+.bg-blobs span:nth-child(1) {
+  width: 560px;
+  height: 560px;
+  top: -160px;
+  left: -140px;
+  background: radial-gradient(circle, var(--accent-end), transparent 68%);
+  opacity: 0.28;
+  animation: drift-a 34s var(--ease-soft) infinite alternate;
+}
+
+.bg-blobs span:nth-child(2) {
+  width: 680px;
+  height: 680px;
+  top: 26%;
+  right: -260px;
+  background: radial-gradient(circle, #ffffff, transparent 70%);
+  opacity: 0.1;
+  animation: drift-b 40s var(--ease-soft) infinite alternate;
+}
+
+.bg-blobs span:nth-child(3) {
+  width: 460px;
+  height: 460px;
+  bottom: -160px;
+  left: 16%;
+  background: radial-gradient(circle, var(--accent-start), transparent 68%);
+  opacity: 0.2;
+  animation: drift-c 28s var(--ease-soft) infinite alternate;
+}
+
+.bg-blobs span:nth-child(4) {
+  width: 340px;
+  height: 340px;
+  top: 55%;
+  left: 46%;
+  background: radial-gradient(circle, #ffffff, transparent 72%);
+  opacity: 0.07;
+  animation: drift-d 36s var(--ease-soft) infinite alternate;
+}
+
+@keyframes drift-a {
+  0%   { transform: translate(0, 0) scale(1) rotate(0deg); }
+  100% { transform: translate(90px, 110px) scale(1.12) rotate(12deg); }
+}
+@keyframes drift-b {
+  0%   { transform: translate(0, 0) scale(1) rotate(0deg); }
+  100% { transform: translate(-110px, 70px) scale(1.08) rotate(-10deg); }
+}
+@keyframes drift-c {
+  0%   { transform: translate(0, 0) scale(1) rotate(0deg); }
+  100% { transform: translate(80px, -90px) scale(1.15) rotate(8deg); }
+}
+@keyframes drift-d {
+  0%   { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(-60px, -50px) scale(1.2); }
+}
+
+/* ---------- 5. Navbar ------------------------------------------ */
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  height: var(--nav-height);
+  display: flex;
+  align-items: center;
+  background: linear-gradient(180deg, rgba(0, 78, 217, 0.5) 0%, rgba(0, 78, 217, 0) 100%);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: background 0.4s var(--ease-soft), box-shadow 0.4s var(--ease-soft), height 0.3s var(--ease-soft);
+}
+
+/* Ligeramente más compacta una vez que se hizo scroll */
+.navbar.is-scrolled {
+  height: calc(var(--nav-height) - 8px);
+  background: rgba(0, 58, 168, 0.7);
+  box-shadow: 0 8px 30px rgba(0, 20, 60, 0.2);
+}
+
+.navbar .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--title-color);
+  text-shadow: var(--title-shadow);
+  transition: opacity 0.25s var(--ease-soft);
+}
+
+.nav-logo:hover {
+  opacity: 0.85;
+}
+
+/* Caja del logo: la imagen (configurable desde site.json) y el
+   emoji de respaldo ocupan el mismo espacio, superpuestos. */
+.nav-logo-mark {
+  position: relative;
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  border-radius: 9px;
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--accent-start), var(--accent-end));
+  box-shadow: var(--accent-shadow);
+}
+
+.nav-logo-mark img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.3s var(--ease-soft);
+}
+
+.nav-logo-mark img.is-loaded {
+  opacity: 1;
+}
+
+.nav-logo-mark .logo-fallback {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1.9rem;
+}
+
+.nav-links a:not(.btn) {
+  font-weight: 600;
+  font-size: 0.93rem;
+  color: var(--title-color);
+  opacity: 0.85;
+  position: relative;
+  padding-block: 0.3rem;
+  transition: opacity 0.3s var(--ease-soft);
+}
+
+.nav-links a:not(.btn)::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0%;
+  height: 2px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--accent-start), var(--accent-end));
+  transition: width 0.35s var(--ease-soft);
+}
+
+.nav-links a:not(.btn):hover {
+  opacity: 1;
+}
+
+.nav-links a:not(.btn):hover::after {
+  width: 100%;
+}
+
+/* Enlace secundario (GitHub): discreto, en su propia píldora,
+   sin el subrayado que usan los enlaces de navegación interna. */
+.nav-link-secondary {
+  opacity: 0.8;
+  padding: 0.42rem 0.95rem !important;
+  border: 1px solid var(--border-soft);
+  border-radius: 999px;
+  transition: opacity 0.3s var(--ease-soft), border-color 0.3s var(--ease-soft),
+              background-color 0.3s var(--ease-soft);
+}
+
+.nav-link-secondary::after {
+  display: none;
+}
+
+.nav-link-secondary:hover {
+  opacity: 1;
+  border-color: var(--border-soft-strong);
+  background: var(--surface-soft);
+}
+
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  padding: 8px;
+  z-index: 110;
+}
+
+.nav-toggle span {
+  width: 22px;
+  height: 2px;
+  background: var(--title-color);
+  border-radius: 2px;
+  transition: transform 0.3s var(--ease-soft), opacity 0.3s var(--ease-soft);
+}
+
+.nav-toggle[aria-expanded="true"] span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.nav-toggle[aria-expanded="true"] span:nth-child(2) {
+  opacity: 0;
+}
+.nav-toggle[aria-expanded="true"] span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Fondo oscuro detrás del menú móvil abierto */
+.nav-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 105;
+  background: rgba(0, 10, 40, 0.5);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s var(--ease-soft);
+}
+
+.nav-backdrop.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Bloquea el scroll del body mientras el menú móvil está abierto */
+body.nav-open {
+  overflow: hidden;
+}
+
+/* ---------- 6. Botones ------------------------------------------ */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.9rem 1.8rem;
+  border-radius: 999px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.95rem;
+  white-space: nowrap;
+  transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease-soft),
+              filter 0.35s var(--ease-soft), background-position 0.5s var(--ease-soft),
+              background-color 0.3s var(--ease-soft), border-color 0.3s var(--ease-soft);
+}
+
+.btn-primary {
+  background: linear-gradient(100deg, var(--accent-start), var(--accent-end) 65%, var(--accent-start));
+  background-size: 200% auto;
+  background-position: 0% 50%;
+  color: #101010;
+  box-shadow: 0 12px 30px rgba(255, 135, 0, 0.32);
+  text-shadow: none;
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px);
+  background-position: 100% 50%;
+  box-shadow: 0 18px 38px rgba(255, 135, 0, 0.42);
+}
+
+.btn-primary:active {
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  background: var(--surface-soft);
+  color: var(--title-color);
+  border: 1px solid var(--border-soft);
+  text-shadow: var(--title-shadow);
+}
+
+.btn-secondary:hover {
+  background: var(--surface-soft-hover);
+  border-color: var(--border-soft-strong);
+  transform: translateY(-3px);
+}
+
+.btn-secondary:active {
+  transform: translateY(-1px);
+}
+
+.btn-nav {
+  padding: 0.62rem 1.45rem;
+  font-size: 0.88rem;
+}
+
+/* ---------- 7. Hero ---------------------------------------------- */
+
+.hero {
+  position: relative;
+  padding-top: calc(var(--nav-height) + 6rem);
+  padding-bottom: 7rem;
+  min-height: 94vh;
+  display: flex;
+  align-items: center;
+}
+
+.hero .container {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 3.5rem;
+  align-items: center;
+}
+
+.hero-copy h1 {
+  font-size: clamp(2.6rem, 5.2vw, 4.2rem);
+  margin-bottom: 0.9rem;
+}
+
+.hero-tagline {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.15rem, 2vw, 1.4rem);
+  background: linear-gradient(100deg, var(--accent-start), var(--accent-end));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(var(--accent-shadow));
+  margin: 0 0 1.2rem;
+}
+
+.hero-copy p.subtitle {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 1.1rem;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.18);
+  max-width: 46ch;
+  margin-bottom: 2.6rem;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.1rem;
+}
+
+.hero-visual {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+}
+
+.mascot-frame {
+  position: relative;
+  width: min(360px, 80%);
+  aspect-ratio: 1 / 1;
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.02));
+  border: 1px solid var(--border-soft);
+  box-shadow: 0 30px 60px rgba(0, 20, 70, 0.25);
+  animation: float-mascot 6.5s var(--ease-soft) infinite;
+}
+
+.mascot-frame img {
+  width: 78%;
+  height: 78%;
+  object-fit: contain;
+  border-radius: var(--radius);
+}
+
+.mascot-fallback {
+  font-family: var(--font-display);
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 0.95rem;
+  text-align: center;
+  padding: 1.5rem;
+}
+
+@keyframes float-mascot {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-16px) rotate(0.6deg); }
+}
+
+/* Burbujas de reacción flotando alrededor de la mascota */
+.reaction-chip {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--accent-start), var(--accent-end));
+  box-shadow: 0 10px 24px rgba(255, 135, 0, 0.35);
+  font-size: 1.3rem;
+  transition: transform 0.3s var(--ease-soft);
+}
+
+.reaction-chip img {
+  width: 60%;
+  height: 60%;
+  object-fit: contain;
+}
+
+.reaction-chip.c1 { width: 85px; height: 85px; top: 6%; right: 4%; animation: bob 5s var(--ease-soft) infinite; }
+.reaction-chip.c2 { width: 55px; height: 55px; bottom: 12%; left: -2%; animation: bob 6s var(--ease-soft) infinite 0.7s; }
+.reaction-chip.c3 { width: 110px; height: 110px; bottom: -4%; right: 18%; animation: bob 5.5s var(--ease-soft) infinite 1.3s; }
+
+@keyframes bob {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-12px) rotate(7deg); }
+}
+
+/* ---------- 8. Secciones genéricas -------------------------------- */
+
+.section {
+  position: relative;
+  padding: 8.5rem 0;
+}
+
+.section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 72px;
+  height: 3px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--accent-start), var(--accent-end));
+  opacity: 0.55;
+}
+
+.section-head {
+  max-width: 640px;
+  margin-bottom: 3.5rem;
+}
+
+.section-head h2 {
+  font-size: clamp(2rem, 3.6vw, 2.9rem);
+}
+
+.section-placeholder {
+  font-family: var(--font-body);
+  color: rgba(255, 255, 255, 0.75);
+  border: 1px dashed var(--border-soft);
+  border-radius: var(--radius);
+  padding: 2.4rem;
+  font-size: 0.98rem;
+  transition: border-color 0.3s var(--ease-soft), background-color 0.3s var(--ease-soft);
+}
+
+.section-placeholder code {
+  color: var(--accent-end);
+  font-family: monospace;
+}
+
+/* ---- ¿Qué hace el bot? ------------------------------------- */
+
+.about-lead {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 1.12rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.92);
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.16);
+  max-width: 62ch;
+  margin: 0 0 3rem;
+}
+
+/* Lista abierta, sin tarjetas: solo icono + texto separados por
+   suficiente espacio, en línea o envolviendo según el ancho. */
+.about-highlights {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.4rem 2.8rem;
+}
+
+.about-highlights li {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  max-width: 30ch;
+}
+
+.highlight-icon {
+  flex-shrink: 0;
+  width: 42px;
+  height: 42px;
+  border-radius: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+  background: linear-gradient(135deg, var(--accent-start), var(--accent-end));
+  box-shadow: var(--accent-shadow);
+}
+
+.highlight-icon img {
+  width: 60%;
+  height: 60%;
+  object-fit: contain;
+}
+
+.highlight-text {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.98rem;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.92);
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.14);
+}
+
+/* Revelado escalonado para que los highlights no aparezcan todos
+   a la vez, sin perder la simplicidad del fade + slide general. */
+.about-highlights li:nth-child(1) { transition-delay: 0s; }
+.about-highlights li:nth-child(2) { transition-delay: 0.08s; }
+.about-highlights li:nth-child(3) { transition-delay: 0.16s; }
+.about-highlights li:nth-child(4) { transition-delay: 0.24s; }
+.about-highlights li:nth-child(5) { transition-delay: 0.32s; }
+.about-highlights li:nth-child(6) { transition-delay: 0.4s; }
+
+/* ---- Comandos ------------------------------------------------ */
+
+/* Una sola superficie clara y continua — no una grilla de tarjetas.
+   Los comandos se separan con líneas finas, no con cajas propias. */
+/* Panel "glass": ya no es una caja blanca opaca, sino un vidrio
+   sutil sobre el degradado celeste de fondo — mismo lenguaje que
+   los botones secundarios y demás superficies traslúcidas de la
+   página (--surface-soft / --border-soft), con un leve blur para
+   que se note el contenedor sin tapar el fondo. */
+.commands-panel {
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.05));
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-lg);
+  padding: clamp(1.4rem, 4vw, 2.6rem) clamp(1.4rem, 5vw, 3rem);
+  box-shadow: 0 30px 70px rgba(0, 20, 70, 0.25);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.commands-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.commands-list li {
+  display: grid;
+  grid-template-columns: minmax(180px, 260px) 1fr;
+  gap: 0.6rem 2rem;
+  align-items: baseline;
+  padding: 1.35rem 0;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.commands-list li:last-child {
+  border-bottom: none;
+  padding-bottom: 0.4rem;
+}
+
+.commands-list li:first-child {
+  padding-top: 0.2rem;
+}
+
+.command-name {
+  font-family: var(--font-display), Consolas, Menlo, monospace;
+  font-weight: 700;
+  font-size: 0.80rem;
+  letter-spacing: -0.01em;
+  background: linear-gradient(100deg, var(--accent-start), var(--accent-end));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  word-break: break-word;
+}
+
+.command-desc {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 0.98rem;
+  line-height: 1.65;
+  color: rgba(40, 42, 66, 0.85);
+  /* Sin max-height ni truncado: soporta descripciones más largas
+     sin romper el layout, simplemente crecen en altura. */
+}
+
+/* Revelado escalonado de cada fila */
+.commands-list li:nth-child(1)  { transition-delay: 0s; }
+.commands-list li:nth-child(2)  { transition-delay: 0.05s; }
+.commands-list li:nth-child(3)  { transition-delay: 0.1s; }
+.commands-list li:nth-child(4)  { transition-delay: 0.15s; }
+.commands-list li:nth-child(5)  { transition-delay: 0.2s; }
+.commands-list li:nth-child(6)  { transition-delay: 0.25s; }
+.commands-list li:nth-child(7)  { transition-delay: 0.3s; }
+.commands-list li:nth-child(8)  { transition-delay: 0.35s; }
+.commands-list li:nth-child(n+9) { transition-delay: 0.4s; }
+
+/* ---- Funciones -------------------------------------------------
+   A propósito, muy distinto de Comandos: acá no hay panel claro
+   ni filas con líneas — es una grilla abierta sobre el fondo azul,
+   con íconos como acento en vez de una lista tipo documento. */
+
+.functions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2.8rem 2.4rem;
+}
+
+.function-item {
+  max-width: 34ch;
+}
+
+.function-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  font-size: 1.3rem;
+  background: linear-gradient(135deg, var(--accent-start), var(--accent-end));
+  box-shadow: var(--accent-shadow);
+  margin-bottom: 1.1rem;
+}
+
+.function-icon img {
+  width: 60%;
+  height: 60%;
+  object-fit: contain;
+}
+
+.function-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.08rem;
+  color: var(--title-color);
+  text-shadow: var(--title-shadow);
+  margin: 0 0 0.5rem;
+  line-height: 1.3;
+}
+
+.function-desc {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 0.96rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.82);
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.14);
+  margin: 0;
+}
+
+/* Revelado escalonado, más breve porque son más elementos */
+.functions-grid .function-item:nth-child(3n+1) { transition-delay: 0s; }
+.functions-grid .function-item:nth-child(3n+2) { transition-delay: 0.08s; }
+.functions-grid .function-item:nth-child(3n)   { transition-delay: 0.16s; }
+
+/* Revelado al hacer scroll: fade + slide, sutil */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.8s var(--ease-soft), transform 0.8s var(--ease-soft);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---------- 9. CTA final -------------------------------------------- */
+
+.cta-final {
+  position: relative;
+  text-align: center;
+  padding: 8rem 0 9rem;
+}
+
+.cta-final h2 {
+  font-size: clamp(2.2rem, 5vw, 3.4rem);
+  background: linear-gradient(100deg, var(--accent-start), var(--accent-end));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: none;
+  filter: drop-shadow(var(--accent-shadow));
+  margin-bottom: 2.4rem;
+  letter-spacing: -0.01em;
+}
+
+.cta-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.1rem;
+}
+
+/* ---------- 10. Footer ------------------------------------------------ */
+
+.site-footer {
+  border-top: 1px solid var(--border-soft);
+  padding: 4rem 0 2.6rem;
+}
+
+.footer-top {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 2.5rem;
+  margin-bottom: 2.8rem;
+}
+
+.footer-brand h3 {
+  font-size: 1.3rem;
+  margin-bottom: 0.6rem;
+}
+
+.footer-brand p {
+  color: rgba(255, 255, 255, 0.78);
+  max-width: 32ch;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.7rem 2.5rem;
+}
+
+.footer-links a {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.85);
+  position: relative;
+  transition: color 0.3s var(--ease-soft);
+}
+
+.footer-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 0%;
+  height: 1.5px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--accent-start), var(--accent-end));
+  transition: width 0.3s var(--ease-soft);
+}
+
+.footer-links a:hover {
+  color: var(--title-color);
+}
+
+.footer-links a:hover::after {
+  width: 100%;
+}
+
+.footer-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border-soft);
+}
+
+.footer-copy {
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.lang-select {
+  position: relative;
+}
+
+.lang-current {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1.05rem;
+  border-radius: 999px;
+  background: linear-gradient(100deg, var(--accent-start), var(--accent-end));
+  color: var(--text-color);
+  font-weight: 700;
+  font-size: 0.85rem;
+  border: none;
+  transition: transform 0.3s var(--ease-soft), box-shadow 0.3s var(--ease-soft);
+}
+
+.lang-current:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(255, 135, 0, 0.3);
+}
+
+.lang-current::after {
+  content: "▾";
+  font-size: 0.7rem;
+}
+
+.lang-menu {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  right: 0;
+  background: var(--surface);
+  border-radius: 12px;
+  overflow: hidden;
+  min-width: 110px;
+  box-shadow: 0 14px 32px rgba(0, 10, 40, 0.28);
+  display: none;
+}
+
+.lang-menu.is-open {
+  display: block;
+}
+
+.lang-menu button {
+  width: 100%;
+  text-align: left;
+  padding: 0.6rem 1rem;
+  background: none;
+  border: none;
+  color: var(--text-color);
+  font-weight: 600;
+  font-size: 0.85rem;
+  transition: background-color 0.2s var(--ease-soft);
+}
+
+.lang-menu button:hover {
+  background: rgba(255, 135, 0, 0.12);
+}
+
+/* ---------- 11. Legal — estilo documento, sin cajas -------------------- */
+
+/* Alterna entre la vista principal (#view-main) y la vista legal
+   (#view-legal) — se controla desde script.js según el hash. */
+.is-hidden {
+  display: none;
+}
+
+.legal-page {
+  display: none;
+  padding: calc(var(--nav-height) + 5.5rem) 0 6rem;
+}
+
+/* Antes se usaba :target, pero como la navegación entre
+   #privacidad / #terminos se hace con history.pushState() (para
+   evitar un salto de página completo), el navegador no siempre
+   recalcula :target — pushState no cuenta como navegación real.
+   Por eso el mostrar/ocultar pasa a manejarse 100% desde script.js
+   con esta clase, en vez de depender del hash directamente. */
+.legal-page.is-active {
+  display: block;
+}
+
+.legal-container {
+  max-width: 720px;
+}
+
+.legal-page h2 {
+  font-size: clamp(2rem, 4vw, 2.7rem);
+  margin-bottom: 1.4rem;
+}
+
+.legal-intro {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 1.08rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.85);
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.16);
+  max-width: 58ch;
+  margin: 0 0 3.2rem;
+  padding-bottom: 2.2rem;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.legal-sections {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Cada apartado es texto corrido con un número discreto delante,
+   separado por una línea fina — nunca una caja con fondo propio. */
+.legal-block {
+  padding: 1.9rem 0;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.legal-block:last-child {
+  border-bottom: none;
+}
+
+.legal-block-number {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.82rem;
+  letter-spacing: 0.1em;
+  background: linear-gradient(100deg, var(--accent-start), var(--accent-end));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(var(--accent-shadow));
+  margin-bottom: 0.6rem;
+}
+
+.legal-block h3 {
+  font-size: 1.15rem;
+  margin-bottom: 0.6rem;
+}
+
+.legal-block p {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 0.99rem;
+  line-height: 1.75;
+  color: rgba(255, 255, 255, 0.85);
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.14);
+  margin: 0;
+  max-width: 68ch;
+}
+
+.legal-back {
+  display: inline-block;
+  margin-top: 2.6rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--title-color);
+  opacity: 0.85;
+  transition: opacity 0.25s var(--ease-soft);
+}
+
+.legal-back:hover {
+  opacity: 1;
+}
+
+/* ---------- 12. Responsive ---------------------------------------------- */
+
+@media (max-width: 900px) {
+  .hero .container {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-visual {
+    order: -1;
+    min-height: 300px;
+  }
+
+  .hero-copy p.subtitle {
+    max-width: none;
+  }
+
+  .commands-list li {
+    grid-template-columns: 1fr;
+    gap: 0.4rem;
+  }
+}
+
+@media (max-width: 760px) {
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 106;
+    height: 100vh;
+    width: min(78vw, 320px);
+    background: linear-gradient(180deg, var(--bg-end), var(--bg-start));
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 1.7rem;
+    padding: 2rem;
+    transform: translateX(100%);
+    transition: transform 0.4s var(--ease-soft);
+    box-shadow: -12px 0 40px rgba(0, 10, 40, 0.3);
+  }
+
+  .nav-links.is-open {
+    transform: translateX(0);
+  }
+
+  .nav-toggle {
+    display: flex;
+  }
+
+  .footer-top {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding-inline: 1.2rem;
+  }
+
+  .section {
+    padding: 6rem 0;
+  }
+
+  .hero {
+    padding-top: calc(var(--nav-height) + 4rem);
+    padding-bottom: 5rem;
+  }
+}

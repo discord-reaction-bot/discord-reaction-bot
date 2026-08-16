@@ -1,0 +1,40 @@
+{
+  "commands": [
+    {
+      "name": "/ruser @usuario emoji",
+      "description": "Añade o actualiza un usuario vigilado con su reacción."
+    },
+    {
+      "name": "/rmulti-user @u1 @u2 ... emoji",
+      "description": "Asigna el mismo emoji a varios usuarios de golpe."
+    },
+    {
+      "name": "/redit @usuario emoji",
+      "description": "Cambia la reacción de un usuario ya configurado."
+    },
+    {
+      "name": "/rmulti @usuario emoji1 emoji2 ...",
+      "description": "Asigna hasta 5 emojis; el bot elige uno al azar cada vez."
+    },
+    {
+      "name": "/rchance @usuario emoji porcentaje",
+      "description": "Define la probabilidad (1-100%) de reaccionar a ese usuario."
+    },
+    {
+      "name": "/rremove @usuario",
+      "description": "Elimina un usuario de la lista vigilada."
+    },
+    {
+      "name": "/rpause",
+      "description": "Pausa o reanuda las reacciones automáticas."
+    },
+    {
+      "name": "/rlist",
+      "description": "Muestra los usuarios vigilados, sus emojis y probabilidad."
+    },
+    {
+      "name": "/rinfo",
+      "description": "Muestra esta lista de comandos (disponible para todos)."
+    }
+  ]
+}
