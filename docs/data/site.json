@@ -14,7 +14,7 @@
       { "label": "Inicio",    "type": "anchor",   "href": "#inicio" },
       { "label": "Funciones", "type": "anchor",   "href": "#funciones" },
       { "label": "Comandos",  "type": "anchor",   "href": "#comandos" },
-      { "label": "GitHub",    "type": "external", "href": "https://github.com/TU_USUARIO/DiscordBotReacciones", "variant": "secondary" }
+      { "label": "GitHub",    "type": "external", "href": "https://github.com/discord-reaction-bot/discord-reaction-bot.git", "variant": "secondary" }
     ],
     "cta": {
       "label": "Invitar",
@@ -33,7 +33,7 @@
     },
     "secondaryButton": {
       "label": "Ver en GitHub",
-      "href": "https://github.com/TU_USUARIO/DiscordBotReacciones"
+      "href": "https://github.com/discord-reaction-bot/discord-reaction-bot.git"
     },
     "mascotImage": "assets/images/kappa-mascot.png",
     "mascotAlt": "Mascota del bot, basada en el emote Kappa",
@@ -69,11 +69,11 @@
       "title": "¿LISTO PARA USARLO?",
       "primaryButton": {
         "label": "Invitar al bot",
-        "href": "https://discord.com/oauth2/authorize?client_id=TU_CLIENT_ID&scope=bot%20applications.commands&permissions=274878221376"
+        "href": "https://discord.com/oauth2/authorize?client_id=1536438543226896504&permissions=2147830848&integration_type=0&scope=bot+applications.commands"
       },
       "secondaryButton": {
         "label": "Ver en GitHub",
-        "href": "https://github.com/TU_USUARIO/DiscordBotReacciones"
+        "href": "https://github.com/discord-reaction-bot/discord-reaction-bot.git"
       }
     }
   },
@@ -82,8 +82,8 @@
     "brand": "Discord Reaction Bot",
     "tagline": "Un bot personal, simple y directo, para reaccionar por ti.",
     "links": [
-      { "label": "GitHub",                    "href": "https://github.com/TU_USUARIO/DiscordBotReacciones", "external": true },
-      { "label": "Redes",                     "href": "https://linktr.ee/TU_USUARIO",                        "external": true },
+      { "label": "GitHub",                    "href": "https://github.com/discord-reaction-bot/discord-reaction-bot.git", "external": true },
+      { "label": "Redes",                     "href": "https://hanko.carrd.co/",                        "external": true },
       { "label": "Política de privacidad",    "href": "#privacidad" },
       { "label": "Términos y condiciones",    "href": "#terminos" }
     ],
