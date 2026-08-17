@@ -49,10 +49,10 @@
     "title": "¿Qué hace el bot?",
     "lead": "Discord Reaction Bot vigila a las personas que elijas dentro de tus servidores y reacciona automáticamente a sus mensajes con el emoji que configures. Vos decidís a quién vigilar, qué emoji usar y con qué probabilidad reacciona cada vez.",
     "highlights": [
-      { "icon": "assets/images/test.png", "text": "Reacciona solo a los usuarios que elijas" },
-      { "icon": "assets/images/test.png", "text": "Probabilidad de reacción configurable por usuario" },
-      { "icon": "assets/images/test.png", "text": "Configuración independiente en cada servidor" },
-      { "icon": "assets/images/test.png", "text": "Guarda todo en un archivo JSON local" }
+      { "icon": "data/data-functions/users2.svg", "text": "Reacciona solo a los usuarios que elijas" },
+      { "icon": "data/data-functions/dice.svg", "text": "Probabilidad de reacción configurable por usuario" },
+      { "icon": "data/data-functions/setting.svg", "text": "Configuración independiente en cada servidor" },
+      { "icon": "data/data-functions/json.svg", "text": "Guarda todo en un archivo JSON local" }
     ]
   },
 
