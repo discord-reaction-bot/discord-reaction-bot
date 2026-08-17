@@ -3,7 +3,7 @@
 Este proyecto incluye instrucciones para crear y configurar tu propio bot de Discord, 
 o bien usar el bot ya creado directamente. 
 
-[Haz clic aquí para invitar el bot a tu servidor](https://discord-reaction-bot.github.io/discord-reaction-bot/#inicio)
+[Haz clic aquí para invitar el bot a tu servidor](https://discord-reaction-bot.github.io/)
 
 **Eres libre de usar este repositorio como plantilla.** Si prefieres tu propio bot local, 
 puedes seguir las instrucciones más abajo para crear uno con la misma funcionalidad.
