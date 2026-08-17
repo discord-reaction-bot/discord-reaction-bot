@@ -846,12 +846,12 @@ body.nav-open {
 .command-name {
   font-family: var(--font-display), Consolas, Menlo, monospace;
   font-weight: 700;
-  font-size: 0.80rem;
+  font-size: 1.34rem;
   letter-spacing: -0.01em;
-  background: linear-gradient(100deg, var(--accent-start), var(--accent-end));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: var(--accent-start);
+  text-decoration: underline;
+  text-underline-offset: 5px;
+  text-shadow: 0 0 13px rgba(50, 50, 50, 0.7);
   word-break: break-word;
 }
 
